@@ -1,7 +1,7 @@
 //https://stackoverflow.com/questions/40546231/sh-react-scripts-command-not-found-after-running-npm-start
 //https://github.com/yarnpkg/yarn/issues/5240
 //npm install handlebars
-// npm install @handlebars/allow-prototype-access
+// npm install @handlebars/allow-prototype-access  //not really need it
 
 const http = require('http'),
 // axios = require('axios'),

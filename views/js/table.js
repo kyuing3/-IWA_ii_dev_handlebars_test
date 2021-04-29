@@ -44,13 +44,13 @@ function select_row() {
 
     //display a row in update form
     //to help user get some basic info before update form submission
-    document.forms[1].id.value = $(this).children("TD")[1].innerHTML;
-    document.forms[1].title.value = $(this).children("TD")[2].innerHTML;
-    document.forms[1].author.value = $(this).children("TD")[3].innerHTML;
-    document.forms[1].price.value = $(this).children("TD")[4].innerHTML;
+    document.forms[1].id.value = $(this).children("TD")[0].innerHTML;
+    document.forms[1].title.value = $(this).children("TD")[1].innerHTML;
+    document.forms[1].author.value = $(this).children("TD")[2].innerHTML;
+    document.forms[1].price.value = $(this).children("TD")[3].innerHTML;
     
     //init id that will be used when updating a doc
-    id = document.forms[1].id.value;
+    id = document.forms[0].id.value;
 
     //create: just remove the selected row 
     //since post will be done directly between the post form in front end and the server
@@ -68,7 +68,7 @@ function select_row() {
     //delete
     if ($("#CRUD_option").val() == 2) {
       //init id from the selected row in table
-      id = $(this).children("TD")[1].innerHTML;
+      id = $(this).children("TD")[0].innerHTML;
       console.log("id to delete: " + id)
       delete_row(id);
     }
