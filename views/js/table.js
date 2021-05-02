@@ -15,10 +15,6 @@ function draw_table() {
         type: 'GET',
         cache: false,
         success: function (data) {
-          // var source = './views/js/dataDetailsTemplate.handlebars';
-          // var template = Handlebars.compile(source);
-          // var result = template(data);
-          // $("#results").append(result);
           $("#results").append(data);
           select_row();
         }
@@ -33,7 +29,6 @@ function draw_table() {
 function select_row() {
 
   $("#menuTable tbody tr").click(function () {
-  // $("#menuTable tbody tr[entree]").click(function () {
 
     let id;
 
@@ -50,7 +45,7 @@ function select_row() {
     document.forms[1].price.value = $(this).children("TD")[3].innerHTML;
     
     //init id that will be used when updating a doc
-    id = document.forms[0].id.value;
+    id = document.forms[1].id.value;
 
     //create: just remove the selected row 
     //since post will be done directly between the post form in front end and the server
@@ -156,7 +151,6 @@ function change_CRUD_option(value) {
     $('#formCreation').show();
     $('#formUpdate').hide();
     $('#delete').hide();
-    $('#menuTable input[type=checkbox]').attr('disabled', 'true');
 
     document.forms[0].id.value = null;
     document.forms[0].title.value = null;
@@ -175,7 +169,6 @@ function change_CRUD_option(value) {
     $('#formUpdate').show();
     $('#delete').hide();
     $('#del-text-muted').hide();
-    $('#menuTable input[type=checkbox]').attr('disabled', 'true');
 
     document.forms[0].id.value = null;
     document.forms[0].title.value = null;
@@ -194,7 +187,6 @@ function change_CRUD_option(value) {
     $('#delete').show();
     $(".selected").removeClass("selected");
     $('#del-text-muted').show();
-    $('#menuTable input[type=checkbox]').attr('disabled', 'true');
 
     document.forms[0].id.value = null;
     document.forms[0].title.value = null;
@@ -277,47 +269,6 @@ function changeSection(value) {
     document.forms[1].price.value = null;
   }
 };
-
-function loadMore(sectionSelected) {
-
-  console.log("[sectionSelected]");
-  console.log(sectionSelected);
-  // console.log("loadSetSize: " + loadSetSize);
-
-  let x = sectionSelected.children;
-  let currAndNextLoadSet = [];
-  let txt = "";
-  let i, j, currLoadSetNum = 0, temp_i;
-
-  for (i = 0; i < x.length; i++) {
-    for (j = 0; j < x[i].attributes.length; j++) {
-      if (x[i].attributes[j].name == 'style' && x[i].attributes[j].value == 'display: table-row;') {
-        currLoadSetNum = x[i].attributes[j + 1].value;
-        currAndNextLoadSet.push(i);
-
-      }
-      else {
-        if (x[i].attributes[j].name == 'prevloadset' && x[i].attributes[j].value == currLoadSetNum) {
-          currAndNextLoadSet.push(i);
-          // currLoadSetNum = 0;
-        }
-      }
-    }
-  }
-  console.log("currAndNextLoadSetIndex: " + currAndNextLoadSet);
-
-  for (temp_i = 0; temp_i < currAndNextLoadSet.length; temp_i++) {
-    //txt = txt + x[temp_i] + "\n";
-    $(x[temp_i]).css('display', 'table-row');
-
-    //hide "Load More" btn
-    if (currAndNextLoadSet.length == x.length - 1) {
-      // $('#loadMore').hide();
-      $(x[x.length - 1]).css('display', 'none');
-    }
-  }
-  //console.log("txt : " + txt );
-}
 
 
 
